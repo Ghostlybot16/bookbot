@@ -1,0 +1,45 @@
+def text_to_words(text_file):
+    """
+    Splits the text file and finds the total number of words present in the file
+    """
+    
+    split_message = text_file.split()
+    
+    num_words = len(split_message)
+    
+    return num_words
+
+def char_count(text):
+    """
+    Counts the number of times each character appears 
+    """ 
+    
+    text = text.lower()
+    
+    string_to_int = {}
+    
+    for char in text:
+        if char in string_to_int:
+            string_to_int[char] += 1
+        else:
+            string_to_int[char] = 1
+    
+    return string_to_int
+
+
+def sort_on(item):
+    return item["num"]
+
+
+def to_sorted_dict(char_dict):
+    
+    pairs = []
+    
+    for char, count in char_dict.items():
+        pair = {"char": char, "num": count}
+        pairs.append(pair)
+    
+    pairs.sort(reverse=True, key=sort_on)
+    
+    return pairs
+    
