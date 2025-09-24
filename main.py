@@ -2,6 +2,7 @@ import sys
 from stats import text_to_words
 from stats import char_count
 from stats import to_sorted_dict
+from stats import top_ten_words
 
 if len(sys.argv) != 2:
     print(f"Usage: python3 main.py <path_to_book>") # Message to user on proper usage format
@@ -44,6 +45,10 @@ def main():
         if not dict_item["char"].isalpha():
             continue
         print(f"{dict_item['char']}: {dict_item['num']}")
+    
+    print("--------- Top 10 Words ---------")
+    for word, count in top_ten_words(contents_of_book, 10):
+        print(f"{word}: {count}")
     
     print("============= END ===============")
 

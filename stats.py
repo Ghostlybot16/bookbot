@@ -1,3 +1,5 @@
+from collections import Counter
+
 def text_to_words(text_file):
     """
     Splits the text file and finds the total number of words present in the file
@@ -42,4 +44,15 @@ def to_sorted_dict(char_dict):
     pairs.sort(reverse=True, key=sort_on)
     
     return pairs
+
+
+def top_ten_words(text, n=10):
+    """
+    Accepts text (words) and applies counter to them and returns the the top 10 words
+    """
+    split_words = text.lower().split()
+    counter = Counter(split_words) # Applies counter to the split words 
+    top_ten_words = counter.most_common(n)
+    
+    return top_ten_words
     
