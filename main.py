@@ -3,6 +3,7 @@ from stats import text_to_words
 from stats import char_count
 from stats import to_sorted_dict
 from stats import top_ten_words
+from stats import unique_words_and_diversity
 
 if len(sys.argv) != 2:
     print(f"Usage: python3 main.py <path_to_book>") # Message to user on proper usage format
@@ -31,6 +32,7 @@ def main():
     file_path = sys.argv[1] # Uses the user entered 2nd argument of sys.argv as file path
     contents_of_book = get_book_text(file_path)
     total_words = text_to_words(contents_of_book) 
+    unique_count, diversity = unique_words_and_diversity(contents_of_book)
     total_characters = char_count(contents_of_book)
     sorted_dict = to_sorted_dict(total_characters)
     
@@ -39,6 +41,8 @@ def main():
     print(f"Analyzing book found at {file_path}...")
     print("----------- Word Count ----------")
     print(f"Found {total_words} total words")
+    print(f"Unique words: {unique_count}")
+    print(f"Lexical diversity: {diversity:.3f}") # Diversity as a place value decimal
     print("--------- Character Count -------")
     
     for dict_item in sorted_dict:

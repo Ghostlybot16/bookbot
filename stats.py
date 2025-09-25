@@ -55,4 +55,16 @@ def top_ten_words(text, n=10):
     top_ten_words = counter.most_common(n)
     
     return top_ten_words
+
+def unique_words_and_diversity(text):
+    """
+    Returns counts of unique words and lexical diversity as percentage
+    """
+    all_words_from_text = text.lower().split()
+    total_words = len(all_words_from_text) if all_words_from_text else 0
+    unique_words = len(set(all_words_from_text))
+    diversity = (unique_words / total_words) if total_words else 0.0
+    
+    return unique_words, diversity
+    
     
