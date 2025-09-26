@@ -1,5 +1,5 @@
-from collections import Counter
 import re
+from collections import Counter
 
 WORD_RE = re.compile(r"[a-z]+(?:'[a-z]+)?", flags=re.I)
 
