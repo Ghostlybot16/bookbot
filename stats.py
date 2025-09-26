@@ -1,11 +1,23 @@
 from collections import Counter
+import re
+
+WORD_RE = re.compile(r"[a-z]+(?:'[a-z]+)?", flags=re.I)
+
+def tokenize(text):
+    """
+    Converts raw text int oa list of lowercase word tokens. 
+    Removes punctuation/numbers and keeps only words.
+    """
+    text = text.replace("’", "'").replace("—", " ").replace("–", " ")
+    
+    return WORD_RE.findall(text.lower())
 
 def text_to_words(text_file):
     """
     Splits the text file and finds the total number of words present in the file
     """
     
-    split_message = text_file.split()
+    split_message = tokenize(text_file)
     
     num_words = len(split_message)
     
@@ -50,7 +62,7 @@ def top_ten_words(text, n=10):
     """
     Accepts text (words) and applies counter to them and returns the the top 10 words
     """
-    split_words = text.lower().split()
+    split_words = tokenize(text)
     counter = Counter(split_words) # Applies counter to the split words 
     top_ten_words = counter.most_common(n)
     
@@ -60,7 +72,7 @@ def unique_words_and_diversity(text):
     """
     Returns counts of unique words and lexical diversity as percentage
     """
-    all_words_from_text = text.lower().split()
+    all_words_from_text = tokenize(text)
     total_words = len(all_words_from_text) if all_words_from_text else 0
     unique_words = len(set(all_words_from_text))
     diversity = (unique_words / total_words) if total_words else 0.0
